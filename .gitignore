@@ -31,4 +31,5 @@
 *.out
 *.app
 
-lightning_logs*/**
+*.ckpt
+*tfevents*
