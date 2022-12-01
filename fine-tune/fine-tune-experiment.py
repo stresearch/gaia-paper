@@ -8,14 +8,18 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 
-def train_base_spcam_model():
+def train_base_spcam_model(subsample = 1):
+
+
+    
+
     config = Config(
         {
             "mode": "train,test",
             "dataset_params": {
                 "dataset": "spcam_fixed",
-                # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
-                # "val": {"subsample": 1}
+                "train": {"subsample": subsample, "batch_size": max([64, (24 * 96 * 144) // 1])},
+                "val": {"subsample": subsample}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
             "trainer_params": {"gpus": [7], "max_epochs": 100},
             "model_params": {
@@ -31,6 +35,9 @@ def train_base_spcam_model():
     )
 
     model_dir = main(**config.config)
+
+
+
 
 def train_base_cam4_model():
     config = Config(
@@ -56,7 +63,31 @@ def train_base_cam4_model():
 
     model_dir = main(**config.config)
 
+def test_cam4_on_spcam():
+    config = Config(
+        {
+            "mode": "test",
+            "dataset_params": {
+                "dataset": "spcam_fixed",
+                # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
+                # "val": {"subsample": 1}
+            },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
+            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "model_params": {
+                "ckpt": "./lightning_logs/base_cam4"
+            },
+        }
+    )
+
+    model_dir = main(**config.config)
+
+
+# def finetune_cam4_on_spcam():
+
+
+
 
 if __name__ == "__main__":
-    train_base_spcam_model()
+    # train_base_spcam_model()
     # train_base_cam4_model()
+    test_cam4_on_spcam()
