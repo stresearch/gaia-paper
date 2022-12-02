@@ -33,3 +33,4 @@
 
 *.ckpt
 *tfevents*
+**/.ipynb_checkpoints/*
