@@ -11,7 +11,7 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 
-def train_base_spcam_model(subsample = 1):
+def train_base_spcam_model(subsample = 1, level_name = "spcam"):
 
 
     # num_steps_per_epoch = 54
@@ -35,7 +35,7 @@ def train_base_spcam_model(subsample = 1):
             "trainer_params": {"gpus": [7], "max_epochs": 100},
             "model_params": {
                 "model_type": "fcn",
-                "model_grid": levels["spcam"],
+                "model_grid": levels[level_name],
                 "upweigh_low_levels": True,
                 "weight_decay": 1.0,
                 "lr": lr,
@@ -133,6 +133,25 @@ def test_cam4_on_spcam():
     model_dir = main(**config.config)
 
 
+def test_spcam_on_cam4():
+    config = Config(
+        {
+            "mode": "test",
+            "dataset_params": {
+                "dataset": "cam4_fixed",
+                # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
+                # "val": {"subsample": 1}
+            },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
+            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "model_params": {
+                "ckpt": "fine-tune/lightning_logs/base_spcam_26"
+            },
+        }
+    )
+
+    model_dir = main(**config.config)
+
+
 # def finetune_cam4_on_spcam():
 
 
@@ -142,6 +161,9 @@ if __name__ == "__main__":
     # train_base_spcam_model()
     # train_base_cam4_model()
     # [1,8,16,32]:#
-    for s in [64,128,256]:
-        # train_base_spcam_model(s)
-        fine_tune_base_cam4_model(s)
+    # for s in [64,128,256]:
+    #     # train_base_spcam_model(s)
+    #     fine_tune_base_cam4_model(s)
+
+    test_spcam_on_cam4()
+    # train_base_spcam_model(1, "cam4")
