@@ -1,0 +1,479 @@
+ckpt: null
+dataset_params:
+  batch_size: 27648
+  dataset: cam4_v5
+  inputs:
+  - B_Q [t+1]
+  - B_T [t+1]
+  - B_U [t+1]
+  - B_V [t+1]
+  - B_OMEGA [t+1]
+  - B_Z3 [t+1]
+  - B_PS [t+1]
+  - SOLIN [t+1]
+  - B_SHFLX [t+1]
+  - B_LHFLX [t+1]
+  - LANDFRAC [t]
+  - OCNFRAC [t]
+  - ICEFRAC [t]
+  - B_TS [t+1]
+  mean_thres: 1.0e-13
+  outputs:
+  - A_PTTEND [t+1]
+  - A_PTEQ [t+1]
+  - FSNS [t+1]
+  - FLNS [t+1]
+  - FSNT [t+1]
+  - FLNT [t+1]
+  - FSDS [t+1]
+  - FLDS [t+1]
+  - SRFRAD [t+1]
+  - SOLL [t+1]
+  - SOLS [t+1]
+  - SOLLD [t+1]
+  - SOLSD [t+1]
+  - PRECT [t+1]
+  - PRECC [t+1]
+  - PRECL [t+1]
+  - PRECSC [t+1]
+  - PRECSL [t+1]
+  test:
+    batch_size: 27648
+    data_grid:
+    - 3.5446380000000097
+    - 7.3888135000000075
+    - 13.967214000000006
+    - 23.944625
+    - 37.23029000000011
+    - 53.1146050000002
+    - 70.05915000000029
+    - 85.43911500000031
+    - 100.51469500000029
+    - 118.25033500000026
+    - 139.11539500000046
+    - 163.66207000000043
+    - 192.53993500000033
+    - 226.51326500000036
+    - 266.4811550000001
+    - 313.5012650000006
+    - 368.81798000000157
+    - 433.8952250000011
+    - 510.45525500000167
+    - 600.5242000000027
+    - 696.7962900000033
+    - 787.7020600000026
+    - 867.1607600000013
+    - 929.6488750000024
+    - 970.5548300000014
+    - 992.5560999999998
+    dataset_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_test.pt
+    flatten: true
+    include_index: false
+    inputs:
+    - B_Q [t+1]
+    - B_T [t+1]
+    - B_U [t+1]
+    - B_V [t+1]
+    - B_OMEGA [t+1]
+    - B_Z3 [t+1]
+    - B_PS [t+1]
+    - SOLIN [t+1]
+    - B_SHFLX [t+1]
+    - B_LHFLX [t+1]
+    - LANDFRAC [t]
+    - OCNFRAC [t]
+    - ICEFRAC [t]
+    - B_TS [t+1]
+    outputs:
+    - A_PTTEND [t+1]
+    - A_PTEQ [t+1]
+    - FSNS [t+1]
+    - FLNS [t+1]
+    - FSNT [t+1]
+    - FLNT [t+1]
+    - FSDS [t+1]
+    - FLDS [t+1]
+    - SRFRAD [t+1]
+    - SOLL [t+1]
+    - SOLS [t+1]
+    - SOLLD [t+1]
+    - SOLSD [t+1]
+    - PRECT [t+1]
+    - PRECC [t+1]
+    - PRECL [t+1]
+    - PRECSC [t+1]
+    - PRECSL [t+1]
+    shuffle: false
+    space_filter: null
+    subsample: 1
+    subsample_mode: random
+    var_index_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_var_index.pt
+    variable_filter: null
+  train:
+    batch_size: 27648
+    data_grid:
+    - 3.5446380000000097
+    - 7.3888135000000075
+    - 13.967214000000006
+    - 23.944625
+    - 37.23029000000011
+    - 53.1146050000002
+    - 70.05915000000029
+    - 85.43911500000031
+    - 100.51469500000029
+    - 118.25033500000026
+    - 139.11539500000046
+    - 163.66207000000043
+    - 192.53993500000033
+    - 226.51326500000036
+    - 266.4811550000001
+    - 313.5012650000006
+    - 368.81798000000157
+    - 433.8952250000011
+    - 510.45525500000167
+    - 600.5242000000027
+    - 696.7962900000033
+    - 787.7020600000026
+    - 867.1607600000013
+    - 929.6488750000024
+    - 970.5548300000014
+    - 992.5560999999998
+    dataset_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_train.pt
+    flatten: false
+    include_index: false
+    inputs:
+    - B_Q [t+1]
+    - B_T [t+1]
+    - B_U [t+1]
+    - B_V [t+1]
+    - B_OMEGA [t+1]
+    - B_Z3 [t+1]
+    - B_PS [t+1]
+    - SOLIN [t+1]
+    - B_SHFLX [t+1]
+    - B_LHFLX [t+1]
+    - LANDFRAC [t]
+    - OCNFRAC [t]
+    - ICEFRAC [t]
+    - B_TS [t+1]
+    outputs:
+    - A_PTTEND [t+1]
+    - A_PTEQ [t+1]
+    - FSNS [t+1]
+    - FLNS [t+1]
+    - FSNT [t+1]
+    - FLNT [t+1]
+    - FSDS [t+1]
+    - FLDS [t+1]
+    - SRFRAD [t+1]
+    - SOLL [t+1]
+    - SOLS [t+1]
+    - SOLLD [t+1]
+    - SOLSD [t+1]
+    - PRECT [t+1]
+    - PRECC [t+1]
+    - PRECL [t+1]
+    - PRECSC [t+1]
+    - PRECSL [t+1]
+    shuffle: true
+    space_filter: null
+    subsample: 1
+    subsample_mode: random
+    var_index_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_var_index.pt
+    variable_filter: null
+  val:
+    batch_size: 27648
+    data_grid:
+    - 3.5446380000000097
+    - 7.3888135000000075
+    - 13.967214000000006
+    - 23.944625
+    - 37.23029000000011
+    - 53.1146050000002
+    - 70.05915000000029
+    - 85.43911500000031
+    - 100.51469500000029
+    - 118.25033500000026
+    - 139.11539500000046
+    - 163.66207000000043
+    - 192.53993500000033
+    - 226.51326500000036
+    - 266.4811550000001
+    - 313.5012650000006
+    - 368.81798000000157
+    - 433.8952250000011
+    - 510.45525500000167
+    - 600.5242000000027
+    - 696.7962900000033
+    - 787.7020600000026
+    - 867.1607600000013
+    - 929.6488750000024
+    - 970.5548300000014
+    - 992.5560999999998
+    dataset_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_val.pt
+    flatten: false
+    include_index: false
+    inputs:
+    - B_Q [t+1]
+    - B_T [t+1]
+    - B_U [t+1]
+    - B_V [t+1]
+    - B_OMEGA [t+1]
+    - B_Z3 [t+1]
+    - B_PS [t+1]
+    - SOLIN [t+1]
+    - B_SHFLX [t+1]
+    - B_LHFLX [t+1]
+    - LANDFRAC [t]
+    - OCNFRAC [t]
+    - ICEFRAC [t]
+    - B_TS [t+1]
+    outputs:
+    - A_PTTEND [t+1]
+    - A_PTEQ [t+1]
+    - FSNS [t+1]
+    - FLNS [t+1]
+    - FSNT [t+1]
+    - FLNT [t+1]
+    - FSDS [t+1]
+    - FLDS [t+1]
+    - SRFRAD [t+1]
+    - SOLL [t+1]
+    - SOLS [t+1]
+    - SOLLD [t+1]
+    - SOLSD [t+1]
+    - PRECT [t+1]
+    - PRECC [t+1]
+    - PRECL [t+1]
+    - PRECSC [t+1]
+    - PRECSL [t+1]
+    shuffle: false
+    space_filter: null
+    subsample: 1
+    subsample_mode: random
+    var_index_file: /ssddg1/gaia/cam4_v5/cam4-famip-30m-timestep-third-upload_var_index.pt
+    variable_filter: null
+input_index: !!python/object/apply:collections.OrderedDict
+- - - B_Q
+    - - 0
+      - 26
+  - - B_T
+    - - 26
+      - 52
+  - - B_U
+    - - 52
+      - 78
+  - - B_V
+    - - 78
+      - 104
+  - - B_OMEGA
+    - - 104
+      - 130
+  - - B_Z3
+    - - 130
+      - 156
+  - - B_PS
+    - - 156
+      - 157
+  - - SOLIN
+    - - 157
+      - 158
+  - - B_SHFLX
+    - - 158
+      - 159
+  - - B_LHFLX
+    - - 159
+      - 160
+  - - LANDFRAC
+    - - 160
+      - 161
+  - - OCNFRAC
+    - - 161
+      - 162
+  - - ICEFRAC
+    - - 162
+      - 163
+  - - B_TS
+    - - 163
+      - 164
+linear_constraints: null
+loss: mse
+loss_output_weights:
+- 0.10000000149011612
+- 0.13600000739097595
+- 0.171999990940094
+- 0.20800000429153442
+- 0.24399998784065247
+- 0.2800000011920929
+- 0.31599998474121094
+- 0.351999968290329
+- 0.3879999816417694
+- 0.42399996519088745
+- 0.4599999785423279
+- 0.4959999918937683
+- 0.531999945640564
+- 0.5679999589920044
+- 0.6039999723434448
+- 0.6399999856948853
+- 0.6759999990463257
+- 0.7120000123977661
+- 0.7480000257492065
+- 0.784000039100647
+- 0.8199999928474426
+- 0.8560000061988831
+- 0.8920000195503235
+- 0.9279999732971191
+- 0.9639999866485596
+- 1.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.351999968290329
+- 0.3879999816417694
+- 0.42399996519088745
+- 0.4599999785423279
+- 0.4959999918937683
+- 0.531999945640564
+- 0.5679999589920044
+- 0.6039999723434448
+- 0.6399999856948853
+- 0.6759999990463257
+- 0.7120000123977661
+- 0.7480000257492065
+- 0.784000039100647
+- 0.8199999928474426
+- 0.8560000061988831
+- 0.8920000195503235
+- 0.9279999732971191
+- 0.9639999866485596
+- 1.0
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+- 0.5500000715255737
+lr: 0.001
+lr_schedule: cosine
+model_config:
+  dropout: 0.01
+  hidden_size: 2048
+  input_size: 164
+  leaky_relu: 0.15
+  model_type: fcn
+  num_layers: 21
+  output_size: 68
+model_grid:
+- 3.5446380000000097
+- 7.3888135000000075
+- 13.967214000000006
+- 23.944625
+- 37.23029000000011
+- 53.1146050000002
+- 70.05915000000029
+- 85.43911500000031
+- 100.51469500000029
+- 118.25033500000026
+- 139.11539500000046
+- 163.66207000000043
+- 192.53993500000033
+- 226.51326500000036
+- 266.4811550000001
+- 313.5012650000006
+- 368.81798000000157
+- 433.8952250000011
+- 510.45525500000167
+- 600.5242000000027
+- 696.7962900000033
+- 787.7020600000026
+- 867.1607600000013
+- 929.6488750000024
+- 970.5548300000014
+- 992.5560999999998
+model_type: fcn
+noise_sigma: 0
+optimizer: adam
+output_index: !!python/object/apply:collections.OrderedDict
+- - - A_PTTEND
+    - - 0
+      - 26
+  - - A_PTEQ
+    - - 26
+      - 52
+  - - FSNS
+    - - 52
+      - 53
+  - - FLNS
+    - - 53
+      - 54
+  - - FSNT
+    - - 54
+      - 55
+  - - FLNT
+    - - 55
+      - 56
+  - - FSDS
+    - - 56
+      - 57
+  - - FLDS
+    - - 57
+      - 58
+  - - SRFRAD
+    - - 58
+      - 59
+  - - SOLL
+    - - 59
+      - 60
+  - - SOLS
+    - - 60
+      - 61
+  - - SOLLD
+    - - 61
+      - 62
+  - - SOLSD
+    - - 62
+      - 63
+  - - PRECT
+    - - 63
+      - 64
+  - - PRECC
+    - - 64
+      - 65
+  - - PRECL
+    - - 65
+      - 66
+  - - PRECSC
+    - - 66
+      - 67
+  - - PRECSL
+    - - 67
+      - 68
+positive_func: rectifier
+positive_output_pattern: PREC,FS,FL,SOL
+predict_hidden_states: false
+replace_std_with_range: false
+seed: 345
+unit_normalize: false
+upweigh_low_levels: true
+use_batch_norm_for_norm: false
+use_output_scaling: false
+use_pteq_gradient_reg: 0
+use_rel_hum_constraint: false
+use_rel_hum_reg: false
+use_sample_weights: false
+weight_decay: 1.0
+zero_outputs: true
