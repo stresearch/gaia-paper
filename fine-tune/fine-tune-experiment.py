@@ -11,6 +11,8 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 
+gpu = 7
+
 def train_base_spcam_model(subsample = 1, level_name = "spcam"):
 
 
@@ -21,6 +23,8 @@ def train_base_spcam_model(subsample = 1, level_name = "spcam"):
     # new_size = total_size // subsample
 
     batch_size = batch_size_orig // subsample
+    batch_size = max(batch_size, 4)
+
 
     lr = 1e-3/sqrt(subsample)
 
@@ -32,7 +36,7 @@ def train_base_spcam_model(subsample = 1, level_name = "spcam"):
                 "train": {"subsample": subsample, "batch_size": batch_size},
                 "val": {"subsample": subsample}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
-            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
                 "model_type": "fcn",
                 "model_grid": levels[level_name],
@@ -62,7 +66,7 @@ def train_base_cam4_model():
                 # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
                 # "val": {"subsample": 1}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
-            "trainer_params": {"gpus": [6], "max_epochs": 100},
+            "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
                 "model_type": "fcn",
                 "model_grid": levels["spcam"],
@@ -89,6 +93,8 @@ def fine_tune_base_cam4_model(subsample = 1):
 
     batch_size = batch_size_orig // subsample
 
+    batch_size = max(batch_size, 4)
+
     lr = 5e-5/sqrt(subsample)
 
     config = Config(
@@ -99,7 +105,7 @@ def fine_tune_base_cam4_model(subsample = 1):
                 "train": {"subsample": subsample, "batch_size": batch_size},
                 "val": {"subsample": subsample}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
-            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
                 "ckpt": "lightning_logs/base_cam4",
                 # "upweigh_low_levels": True,
@@ -123,7 +129,7 @@ def test_cam4_on_spcam():
                 # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
                 # "val": {"subsample": 1}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
-            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
                 "ckpt": "./lightning_logs/base_cam4"
             },
@@ -142,7 +148,7 @@ def test_spcam_on_cam4():
                 # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
                 # "val": {"subsample": 1}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
-            "trainer_params": {"gpus": [7], "max_epochs": 100},
+            "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
                 "ckpt": "fine-tune/lightning_logs/base_spcam_26"
             },
@@ -161,9 +167,17 @@ if __name__ == "__main__":
     # train_base_spcam_model()
     # train_base_cam4_model()
     # [1,8,16,32]:#
-    # for s in [64,128,256]:
-    #     # train_base_spcam_model(s)
-    #     fine_tune_base_cam4_model(s)
+    ss = [4096*2,4096*4,4096*8,4096*16]
 
-    test_spcam_on_cam4()
+    ss = [4096*64]
+
+
+    for s in ss:
+        train_base_spcam_model(s)
+
+    for s in ss:
+        # train_base_spcam_model(s)
+        fine_tune_base_cam4_model(s)
+
+    # test_spcam_on_cam4()
     # train_base_spcam_model(1, "cam4")
