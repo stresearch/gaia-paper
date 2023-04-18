@@ -1,19 +1,22 @@
 
 
 import sys
+
+import pandas as pd
 sys.path.append("/proj/gaia-climate/team/kirill/gaia-surrogate")
 from math import log, sqrt
 
 import numpy as np
 import torch
 
+
 from gaia.config import Config, levels
 from gaia.training import main
 
+min_batch_size = 64 #4
+gpu = 2
 
-gpu = 7
-
-def train_base_spcam_model(subsample = 1, level_name = "spcam"):
+def train_base_spcam_model(subsample = 1, level_name = "spcam", seed = 345):
 
 
     # num_steps_per_epoch = 54
@@ -23,10 +26,11 @@ def train_base_spcam_model(subsample = 1, level_name = "spcam"):
     # new_size = total_size // subsample
 
     batch_size = batch_size_orig // subsample
-    batch_size = max(batch_size, 4)
+    batch_size = max(batch_size, min_batch_size)
 
 
-    lr = 1e-3/sqrt(subsample)
+    # lr = 1e-3/sqrt(subsample)
+    lr = 1e-3/sqrt(batch_size_orig/batch_size)
 
     config = Config(
         {
@@ -46,10 +50,12 @@ def train_base_spcam_model(subsample = 1, level_name = "spcam"):
                 # "positive_output_pattern": "PREC,FS,FL,SOL",
                 # "positive_func": "rectifier",
             },
+            "seed": seed,
         }
     )
 
     model_dir = main(**config.config)
+
 
 
 
@@ -82,7 +88,7 @@ def train_base_cam4_model():
     model_dir = main(**config.config)
 
 
-def fine_tune_base_cam4_model(subsample = 1):
+def fine_tune_base_cam4_model(subsample = 1, seed = 345):
 
 
     # num_steps_per_epoch = 54
@@ -93,9 +99,11 @@ def fine_tune_base_cam4_model(subsample = 1):
 
     batch_size = batch_size_orig // subsample
 
-    batch_size = max(batch_size, 4)
+    batch_size = max(batch_size, min_batch_size)
 
-    lr = 5e-5/sqrt(subsample)
+    # lr = 5e-5/sqrt(subsample)
+    lr = 5e-5/sqrt(batch_size_orig/batch_size)
+
 
     config = Config(
         {
@@ -115,6 +123,7 @@ def fine_tune_base_cam4_model(subsample = 1):
                 # "positive_output_pattern": "PREC,FS,FL,SOL",
                 # "positive_func": "rectifier",
             },
+            "seed": seed,
         }
     )
 
@@ -167,17 +176,22 @@ if __name__ == "__main__":
     # train_base_spcam_model()
     # train_base_cam4_model()
     # [1,8,16,32]:#
-    ss = [4096*2,4096*4,4096*8,4096*16]
+    # ss = [4096*2,4096*4,4096*8,4096*16]
 
-    ss = [4096*64]
+    # ss = [4096*64]
 
+    seeds = list(pd.read_csv("seed.csv").iloc[:,0])
 
-    for s in ss:
-        train_base_spcam_model(s)
+        # ss = [4096*2,4096*4,4096*8,4096*16,4096*32,4096*64
 
-    for s in ss:
-        # train_base_spcam_model(s)
-        fine_tune_base_cam4_model(s)
+    ss =  [2048, 4096]#, 8192,  16384,  32768,  65536, 131072, 262144]
+
+    for seed in seeds:
+        for s in ss:
+            train_base_spcam_model(s, seed = seed)
+
+        for s in ss:
+            fine_tune_base_cam4_model(s, seed = seed)
 
     # test_spcam_on_cam4()
     # train_base_spcam_model(1, "cam4")
