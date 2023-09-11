@@ -36,3 +36,4 @@
 
 *.pt
 .vscode
+.vscode/settings.json
