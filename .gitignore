@@ -35,4 +35,4 @@
 **/.ipynb_checkpoints/*
 
 *.pt
-.vscode/*
+.vscode
