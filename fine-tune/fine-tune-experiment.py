@@ -14,7 +14,7 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 min_batch_size = 64 #4
-gpu = 2
+gpu = 7
 
 def train_base_spcam_model(subsample = 1, level_name = "spcam", seed = 345):
 
@@ -68,7 +68,7 @@ def train_base_cam4_model():
         {
             "mode": "train,test",
             "dataset_params": {
-                "dataset": "cam4_fixed",
+                "dataset": "cam4_paper",
                 # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
                 # "val": {"subsample": 1}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
@@ -153,13 +153,13 @@ def test_spcam_on_cam4():
         {
             "mode": "test",
             "dataset_params": {
-                "dataset": "cam4_fixed",
+                "dataset": "cam4_paper",
                 # "train": {"subsample": 1, "batch_size": max([64, (24 * 96 * 144) // 1])},
                 # "val": {"subsample": 1}
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
             "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
-                "ckpt": "fine-tune/lightning_logs/base_spcam_26"
+                "ckpt": "fine-tune/lightning_logs/base_spcam"
             },
         }
     )
@@ -174,24 +174,24 @@ def test_spcam_on_cam4():
 
 if __name__ == "__main__":
     # train_base_spcam_model()
-    # train_base_cam4_model()
+    train_base_cam4_model()
     # [1,8,16,32]:#
     # ss = [4096*2,4096*4,4096*8,4096*16]
 
     # ss = [4096*64]
 
-    seeds = list(pd.read_csv("seed.csv").iloc[:,0])
+    # seeds = list(pd.read_csv("seed.csv").iloc[:,0])
 
-        # ss = [4096*2,4096*4,4096*8,4096*16,4096*32,4096*64
+    #     # ss = [4096*2,4096*4,4096*8,4096*16,4096*32,4096*64
 
-    ss =  [2048, 4096]#, 8192,  16384,  32768,  65536, 131072, 262144]
+    # ss =  [2048, 4096]#, 8192,  16384,  32768,  65536, 131072, 262144]
 
-    for seed in seeds:
-        for s in ss:
-            train_base_spcam_model(s, seed = seed)
+    # for seed in seeds:
+    #     for s in ss:
+    #         train_base_spcam_model(s, seed = seed)
 
-        for s in ss:
-            fine_tune_base_cam4_model(s, seed = seed)
+    #     for s in ss:
+    #         fine_tune_base_cam4_model(s, seed = seed)
 
     # test_spcam_on_cam4()
     # train_base_spcam_model(1, "cam4")

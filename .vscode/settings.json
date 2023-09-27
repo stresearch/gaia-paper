@@ -6,5 +6,6 @@
     "python.envFile": "${workspaceFolder}/.env",
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "/proj/gaia-climate/team/kirill/gaia-surrogate"
-      }
+    },
+    "livePreview.defaultPreviewPath": "/fine-tune/lightning_logs/base_spcam/normalized_gradient_tanh.html"
 }

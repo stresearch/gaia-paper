@@ -33,6 +33,8 @@
 
 *tfevents*
 **/.ipynb_checkpoints/*
+**/scratch*
+
 
 *.pt
 .vscode
