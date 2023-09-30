@@ -47,7 +47,7 @@ dataset_params:
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
   train:
-    batch_size: 64
+    batch_size: 162
     data_grid:
     - 3.64346569404006
     - 7.594819646328688
@@ -86,7 +86,7 @@ dataset_params:
     outputs: null
     shuffle: true
     space_filter: null
-    subsample: 8192
+    subsample: 2048
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -130,7 +130,7 @@ dataset_params:
     outputs: null
     shuffle: false
     space_filter: null
-    subsample: 8192
+    subsample: 2048
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -242,7 +242,7 @@ loss_output_weights:
 - 0.9379310607910156
 - 0.9689655303955078
 - 1.0
-lr: 1.388888888888889e-05
+lr: 2.209708691207961e-05
 lr_schedule: cosine
 model_config:
   dropout: 0.01
@@ -303,7 +303,7 @@ positive_func: exp
 positive_output_pattern: null
 predict_hidden_states: false
 replace_std_with_range: false
-seed: 345
+seed: 440
 unit_normalize: false
 upweigh_low_levels: true
 use_batch_norm_for_norm: false

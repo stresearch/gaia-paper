@@ -303,7 +303,7 @@ positive_func: exp
 positive_output_pattern: null
 predict_hidden_states: false
 replace_std_with_range: false
-seed: 481
+seed: 402
 unit_normalize: false
 upweigh_low_levels: true
 use_batch_norm_for_norm: false

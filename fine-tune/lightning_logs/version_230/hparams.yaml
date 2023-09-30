@@ -86,7 +86,7 @@ dataset_params:
     outputs: null
     shuffle: true
     space_filter: null
-    subsample: 262144
+    subsample: 16384
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -130,7 +130,7 @@ dataset_params:
     outputs: null
     shuffle: false
     space_filter: null
-    subsample: 262144
+    subsample: 16384
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -303,7 +303,7 @@ positive_func: exp
 positive_output_pattern: null
 predict_hidden_states: false
 replace_std_with_range: false
-seed: 228
+seed: 851
 unit_normalize: false
 upweigh_low_levels: true
 use_batch_norm_for_norm: false

@@ -14,7 +14,7 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 min_batch_size = 64 #4
-gpu = 7
+gpu = 6
 
 def train_base_spcam_model(subsample = 1, level_name = "spcam", seed = 345):
 
@@ -159,7 +159,7 @@ def test_spcam_on_cam4():
             },  # "subsample" : 16, "batch_size": 8 * 96 * 144},
             "trainer_params": {"gpus": [gpu], "max_epochs": 100},
             "model_params": {
-                "ckpt": "fine-tune/lightning_logs/base_spcam"
+                "ckpt": "./lightning_logs/base_spcam"
             },
         }
     )
@@ -174,13 +174,18 @@ def test_spcam_on_cam4():
 
 if __name__ == "__main__":
     # train_base_spcam_model()
-    train_base_cam4_model()
+    # train_base_cam4_model()
     # [1,8,16,32]:#
     # ss = [4096*2,4096*4,4096*8,4096*16]
 
     # ss = [4096*64]
 
-    # seeds = list(pd.read_csv("seed.csv").iloc[:,0])
+    seeds = list(pd.read_csv("seed.csv").iloc[:,0])
+    print("seeds", seeds)
+
+    ss = list(pd.read_csv("subsample.csv").iloc[:,-1])
+    print("subsample", ss)
+
 
     #     # ss = [4096*2,4096*4,4096*8,4096*16,4096*32,4096*64
 
@@ -190,8 +195,15 @@ if __name__ == "__main__":
     #     for s in ss:
     #         train_base_spcam_model(s, seed = seed)
 
-    #     for s in ss:
-    #         fine_tune_base_cam4_model(s, seed = seed)
+    #
+    # seeds = [345]
+    
+    for seed in seeds:
+        for s in ss[-8:]:
+            fine_tune_base_cam4_model(s, seed = seed)
+            # train_base_spcam_model(s, seed = seed)
 
     # test_spcam_on_cam4()
+    # test_cam4_on_spcam()
+
     # train_base_spcam_model(1, "cam4")

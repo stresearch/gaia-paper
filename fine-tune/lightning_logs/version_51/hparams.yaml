@@ -47,7 +47,7 @@ dataset_params:
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
   train:
-    batch_size: 64
+    batch_size: 81
     data_grid:
     - 3.64346569404006
     - 7.594819646328688
@@ -86,7 +86,7 @@ dataset_params:
     outputs: null
     shuffle: true
     space_filter: null
-    subsample: 8192
+    subsample: 4096
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -130,7 +130,7 @@ dataset_params:
     outputs: null
     shuffle: false
     space_filter: null
-    subsample: 8192
+    subsample: 4096
     subsample_mode: random
     var_index_file: /ssddg1/gaia/fixed/spcamclbm-nx-16-20m-timestep_4_var_index.pt
     variable_filter: null
@@ -177,7 +177,6 @@ input_index: !!python/object/apply:collections.OrderedDict
   - - Z3
     - - 158
       - 188
-is_finetuned: true
 linear_constraints: null
 loss: mse
 loss_output_weights:
@@ -187,9 +186,9 @@ loss_output_weights:
 - 0.0
 - 0.0
 - 0.0
-- 0.0
-- 0.0
-- 0.0
+- 0.22413793206214905
+- 0.25517240166664124
+- 0.2862069010734558
 - 0.317241370677948
 - 0.3482758700847626
 - 0.37931033968925476
@@ -243,8 +242,8 @@ loss_output_weights:
 - 0.9379310607910156
 - 0.9689655303955078
 - 1.0
-lr: 6.944444444444445e-07
-lr_schedule: null
+lr: 1.5625e-05
+lr_schedule: cosine
 model_config:
   dropout: 0.01
   hidden_size: 512
@@ -304,7 +303,7 @@ positive_func: exp
 positive_output_pattern: null
 predict_hidden_states: false
 replace_std_with_range: false
-seed: 345
+seed: 397
 unit_normalize: false
 upweigh_low_levels: true
 use_batch_norm_for_norm: false

@@ -41,6 +41,6 @@ def predict_model_on_dataset(model_ckpt = None, dataset_name = None):
 if __name__ == "__main__":
 
     for model in ["fine-tune/lightning_logs/base_cam4", "fine-tune/lightning_logs/base_spcam"]:
-        for dataset in ["spcam_fixed", "cam4_fixed"]:
+        for dataset in ["spcam_fixed", "cam4_paper"]:
             predict_model_on_dataset(model_ckpt = model, dataset_name= dataset)
 
