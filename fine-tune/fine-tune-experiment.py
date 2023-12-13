@@ -14,7 +14,7 @@ from gaia.config import Config, levels
 from gaia.training import main
 
 min_batch_size = 64 #4
-gpu = 6
+gpu = 4
 
 def train_base_spcam_model(subsample = 1, level_name = "spcam", seed = 345):
 
@@ -197,11 +197,14 @@ if __name__ == "__main__":
 
     #
     # seeds = [345]
+
+    ss1 = ss[1:2]
+    ss2 = ss[4:8]
     
     for seed in seeds:
-        for s in ss[-8:]:
-            fine_tune_base_cam4_model(s, seed = seed)
-            # train_base_spcam_model(s, seed = seed)
+        for s in ss2:#ss[-8:]:
+            # fine_tune_base_cam4_model(s, seed = seed)
+            train_base_spcam_model(s, seed = seed)
 
     # test_spcam_on_cam4()
     # test_cam4_on_spcam()
